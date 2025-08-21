@@ -6,6 +6,88 @@ body {
     color: #202124;
 }
 
+.project-row {
+    display: flex;
+    align-items: center; 
+    gap: 40px; 
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-row:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Image & Details Container */
+.project-image {
+    flex: 1;
+    min-width: 0;
+}
+
+.project-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.project-details {
+    flex: 1; 
+}
+
+.project-details h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #1a73e8;
+    margin-bottom: 0.5rem;
+}
+
+.project-meta {
+    font-size: 0.9rem;
+    color: #5f6368;
+    margin-bottom: 0.5rem;
+}
+
+.project-details p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.project-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.project-link:hover {
+    background-color: #1764c2;
+}
+
+/* The magic for alternating layout! */
+.project-right {
+    flex-direction: row-reverse; /* Reverses the order of the flex items */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .project-row {
+        flex-direction: column; /* Stacks items on top of each other */
+        text-align: center;
+    }
+    .project-right {
+        flex-direction: column; /* Ensure all rows stack */
+    }
+}
+
 .timeline-container {
     max-width: 800px;
     margin: 0 auto;
