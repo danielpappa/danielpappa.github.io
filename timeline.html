@@ -19,7 +19,7 @@
 
     <main>
         <div class="timeline-container">
-            <h1>An Overview of my Studies, Trips and Activities</h1>
+            <h1>An Overview of my Studies, Trips & Activities</h1>
 
             <div class="timeline-event" id="event-highschool">
                 <div class="timeline-content">
@@ -87,6 +87,51 @@
         </div>
         <p>&copy; 2025 Daniel Pappalardo. All rights reserved.</p>
     </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            const currentEvent = document.getElementById('event-tu-vienna');
+            if (currentEvent) {
+                currentEvent.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                setTimeout(updateCenterEvent, 500);
+            }
+        });
+
+        function updateCenterEvent() {
+            const container = document.querySelector('.timeline-container');
+            const events = document.querySelectorAll('.timeline-event');
+            const containerRect = container.getBoundingClientRect();
+            const centerY = containerRect.top + containerRect.height / 2;
+            
+            let closestEvent = null;
+            let closestDistance = Infinity;
+            
+            events.forEach(event => {
+                const eventRect = event.getBoundingClientRect();
+                const eventCenterY = eventRect.top + eventRect.height / 2;
+                const distance = Math.abs(eventCenterY - centerY);
+                
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestEvent = event;
+                }
+            });
+            
+            events.forEach(event => event.classList.remove('center'));
+            
+            if (closestEvent) {
+                closestEvent.classList.add('center');
+            }
+        }
+
+        document.querySelector('.timeline-container').addEventListener('scroll', function() {
+            updateCenterEvent();
+        });
+    </script>
 
 </body>
 </html>

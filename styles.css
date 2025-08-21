@@ -2,11 +2,48 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    padding-top: 80px;
     background-color: #f8f9fa;
     color: #202124;
 }
 
-.project-row {
+.profile-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-content {
+    flex: 2;
+    padding-left: 2rem;
+}
+
+.bachelor-image img {
+    width: 200px;
+    height: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.bachelor-content {
+    flex: 2;
+    padding-left: 2rem;
+}
+
+.master-image img {
+    width: 200px;
+    height: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.master-content {
+    flex: 2;
+    padding-left: 2rem;
+}
+
+.row {
     display: flex;
     align-items: center; 
     gap: 40px; 
@@ -18,7 +55,7 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.project-row:nth-child(even) {
+.row:nth-child(odd) {
     background-color: #f8f9fa;
 }
 
@@ -46,15 +83,9 @@ body {
 }
 
 .project-meta {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     color: #5f6368;
     margin-bottom: 0.5rem;
-}
-
-.project-details p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
 }
 
 .project-link {
@@ -72,7 +103,6 @@ body {
     background-color: #1764c2;
 }
 
-/* The magic for alternating layout! */
 .project-right {
     flex-direction: row-reverse; /* Reverses the order of the flex items */
 }
@@ -89,23 +119,40 @@ body {
 }
 
 .timeline-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    height: 100vh; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: calc(100vh - 80px);
     overflow-y: scroll; 
-    scroll-snap-type: y mandatory;
-    -webkit-overflow-scrolling: touch; 
+    scroll-snap-type: y proximity;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+}
+
+.timeline-container h1 {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    padding: 2rem 20px 1rem 20px;
+    margin: 0;
+    z-index: 100;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #202124;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    line-height: 1.2;
 }
 
 .timeline-event {
-    height: 100vh;
+    height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
     scroll-snap-align: center; 
     padding: 20px;
-    opacity: 0.5;
+    margin: 10vh 20px;
+    opacity: 0.6;
     transition: all 0.5s ease-in-out;
 }
 
@@ -113,22 +160,26 @@ body {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    max-width: 500px;
-    border: 3px solid transparent;
+    padding: 30px;
+    width: 500px;
+    height: 200px;
+    border: 2px solid transparent;
     transition: all 0.5s ease-in-out;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .timeline-event h2 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: #666;
     transition: all 0.5s ease-in-out;
+    font-weight: 300;
 }
 
 .timeline-event p {
-    font-size: 1.1rem;
     color: #666;
 }
 
@@ -140,18 +191,34 @@ body {
 
 /* Active State (on scroll snap) */
 .timeline-event:focus-within {
-    opacity: 1; /* Make it fully visible */
+    opacity: 1;
 }
 
 .timeline-event:focus-within .timeline-content {
-    transform: scale(1.1); /* Larger size */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    border-color: #007bff; /* Blue border to stand out */
+    border-color: #007bff;
 }
 
 .timeline-event:focus-within h2 {
-    font-size: 3rem; /* Larger font size */
+    font-size: 3rem; 
     color: #007bff;
+}
+
+/* Center timeline event highlighting */
+.timeline-event.center {
+    opacity: 1;
+}
+
+.timeline-event.center .timeline-content {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    border-color: #f8f9ff;
+    background-color: #f8f9ff;
+}
+
+.timeline-event.center h2 {
+    font-size: 2rem;
+    color: #1a73e8;
+    font-weight: 500;
 }
 
 /* Safari fix */
@@ -171,7 +238,12 @@ body {
 header {
     background-color: #ffffff;
     padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,.1); 
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 nav {
@@ -193,15 +265,20 @@ nav a:hover {
 
 /* Main Content Styling */
 main {
-    padding: 4rem 0;
+    padding: 2rem 0;
     text-align: center;
 }
 
+/* Uniform page titles */
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 300;
     color: #202124;
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+    padding: 1rem 20px;
+    max-width: 1200px;
+    text-align: center;
+    line-height: 1.2;
 }
 
 p {
