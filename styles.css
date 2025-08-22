@@ -226,6 +226,10 @@ body {
     font-weight: 500;
 }
 
+.timeline-event.center .job h2 {
+    color: #8c00ff;
+}
+
 /* Safari fix */
 @supports (-webkit-touch-callout: none) {
     .timeline-container {
