@@ -204,6 +204,11 @@ body {
     color: #007bff;
 }
 
+.timeline-content-job:focus-within h2 {
+    font-size: 3rem; 
+    color: #8c00ff;
+}
+
 /* Center timeline event highlighting */
 .timeline-event.center {
     opacity: 1;
