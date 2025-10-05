@@ -78,6 +78,7 @@ a:hover, a:active {
 .project-image img {
     max-width: 100%;
     height: auto;
+    max-height: 15cm;
     border-radius: 8px;
 }
 
